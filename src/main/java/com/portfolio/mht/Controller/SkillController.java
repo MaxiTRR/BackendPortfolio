@@ -1,7 +1,7 @@
 
 package com.portfolio.mht.Controller;
 
-import com.portfolio.mht.Entity.InfoPersonal;
+
 import com.portfolio.mht.Entity.Skill;
 import com.portfolio.mht.Interface.ISkillService;
 import java.util.List;
