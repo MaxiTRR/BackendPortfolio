@@ -5,6 +5,7 @@ import com.portfolio.mht.Entity.InfoPersonal;
 import com.portfolio.mht.Interface.IInfoPersonalService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,18 +27,21 @@ public class InfoPersonalController {
         return iInfoPersonalService.getInfoPersonal();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("infoPersonal/crear")
     public String createInfoPersonal(@RequestBody InfoPersonal infoPersonal){
         iInfoPersonalService.saveInfoPersonal(infoPersonal);
         return "La InfoPersonal fue creada correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("infoPersonal/borrar/{id}")
     public String deleteInfoPersonal(@PathVariable Long id){
         iInfoPersonalService.deleteInfoPersonal(id);
         return "La InfoPersonal fue eliminada correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("infoPersonal/editar/{id}")
     public InfoPersonal editInfoPersonal(@PathVariable Long id,
                                          @RequestParam("nombreInfo") String nuevoNombreInfo,
