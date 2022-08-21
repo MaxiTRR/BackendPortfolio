@@ -1,45 +1,31 @@
 
-package com.portfolio.mht.Entity;
+package com.portfolio.mht.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
 
-
-@Entity
-public class Experience {
+public class DtoExperience {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @NotNull
-    @Size (min=1, max=50, message = "No cumple con la longitud")
+    @NotBlank
     private String lugar;
     
-    @NotNull
-    @Size (min=1, max=50, message = "No cumple con la longitud")
+    @NotBlank
     private String periodo;
     
-    @NotNull
-    @Size (min=1, max=50, message = "No cumple con la longitud")
+    @NotBlank
     private String area;
     
-    @NotNull
-    @Size (min=1, max=50, message = "No cumple con la longitud")
+    @NotBlank
     private String rol;
     
+    @NotBlank
     private String logo;
     
     //Constructors
-    public Experience() {
+    public DtoExperience() {
     }
 
-    public Experience(String lugar, String periodo, String area, String rol, String logo) {
+    public DtoExperience(String lugar, String periodo, String area, String rol, String logo) {
         this.lugar = lugar;
         this.periodo = periodo;
         this.area = area;
@@ -47,15 +33,7 @@ public class Experience {
         this.logo = logo;
     }
     
-    //Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    //Getter y Setter
     public String getLugar() {
         return lugar;
     }
@@ -95,5 +73,5 @@ public class Experience {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-    
+   
 }
