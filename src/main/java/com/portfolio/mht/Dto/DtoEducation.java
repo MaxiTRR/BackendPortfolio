@@ -1,49 +1,32 @@
 
-package com.portfolio.mht.Entity;
+package com.portfolio.mht.Dto;
+
+import javax.validation.constraints.NotBlank;
 
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-
-
-@Entity
-public class Education {
+public class DtoEducation {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @NotNull
-    @Size(min=1, max=50, message="No cumple con la longitud" )
+    @NotBlank
     private String nombreInst;
     
-    
-    @NotNull
-    @Size(min=1, max=50, message="No cumple con la longitud" )
+    @NotBlank
     private String periodoEdu;
     
-    @NotNull
-    @Size(min=1, max=50, message="No cumple con la longitud" )
+    @NotBlank
     private String tituloEdu;
     
-    @NotNull
-    @Size(min=1, max=300, message="No cumple con la longitud" )
+    @NotBlank
     private String descripcionEdu;
     
+    @NotBlank
     private String logoEdu;
     
     //Constructors
 
-    public Education() {
+    public DtoEducation() {
     }
 
-    public Education(String nombreInst, String periodoEdu, String tituloEdu, String descripcionEdu, String logoEdu) {
+    public DtoEducation(String nombreInst, String periodoEdu, String tituloEdu, String descripcionEdu, String logoEdu) {
         this.nombreInst = nombreInst;
         this.periodoEdu = periodoEdu;
         this.tituloEdu = tituloEdu;
@@ -52,14 +35,6 @@ public class Education {
     }
     
     //Getter y Setter
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNombreInst() {
         return nombreInst;
@@ -100,5 +75,6 @@ public class Education {
     public void setLogoEdu(String logoEdu) {
         this.logoEdu = logoEdu;
     }
+    
     
 }
