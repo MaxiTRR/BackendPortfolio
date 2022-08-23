@@ -2,43 +2,46 @@
 package com.portfolio.mht.Service;
 
 import com.portfolio.mht.Entity.Skill;
-import com.portfolio.mht.Interface.ISkillService;
+
 import com.portfolio.mht.Repository.ISkillRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpSkillService implements ISkillService{
+@Transactional
+public class ImpSkillService{
     
     @Autowired ISkillRepository iSkillRepository;
 
-    @Override
-    public List<Skill> getSkill() {
-        List<Skill> skill = iSkillRepository.findAll();
-        return skill;
+    public List<Skill> list(){
+        return iSkillRepository.findAll();
     }
-
-    @Override
-    public void saveSkill(Skill skill) {
+    
+    public Optional<Skill> getOne(Long id){
+        return iSkillRepository.findById(id);
+    }
+    
+    public Optional<Skill> getByNombre(String nombre){
+        return iSkillRepository.findByNombre(nombre);
+    }
+    
+    public void save(Skill skill){
         iSkillRepository.save(skill);
     }
-
-    @Override
-    public void deleteSkill(Long id) {
+    
+    public void delete(Long id){
         iSkillRepository.deleteById(id);
     }
-
-    @Override
-    public Skill findSkill(Long id) {
-        Skill skill = iSkillRepository.findById(id).orElse(null);
-        return skill;
+    
+    public boolean existsById(Long id){
+        return iSkillRepository.existsById(id);
+    }
+    
+    public boolean existsByNombre(String nombre){
+        return iSkillRepository.existsByNombre(nombre);
     }
 
-    
-
-    
-    
-    
-    
 }
