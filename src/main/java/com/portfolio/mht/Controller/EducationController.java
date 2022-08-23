@@ -48,8 +48,7 @@ public class EducationController {
         if(StringUtils.isBlank(dtoEducation.getNombreInst()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         
-        if(impEducationService.existsByNombreInst(dtoEducation.getNombreInst()))
-            return new ResponseEntity(new Mensaje("Esa Education existe"), HttpStatus.BAD_REQUEST);
+        
         
         Education education = new Education(dtoEducation.getNombreInst(),
                                             dtoEducation.getPeriodoEdu(),
