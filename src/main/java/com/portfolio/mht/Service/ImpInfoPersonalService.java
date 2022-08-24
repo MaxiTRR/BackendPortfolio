@@ -2,37 +2,46 @@
 package com.portfolio.mht.Service;
 
 import com.portfolio.mht.Entity.InfoPersonal;
-import com.portfolio.mht.Interface.IInfoPersonalService;
+
 import com.portfolio.mht.Repository.IInfoPersonalRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpInfoPersonalService implements IInfoPersonalService{
+@Transactional
+public class ImpInfoPersonalService{
     
     @Autowired IInfoPersonalRepository iInfoPersonalRepository;
     
-    @Override
-    public List<InfoPersonal> getInfoPersonal() {
-        List<InfoPersonal> infoPersonal = iInfoPersonalRepository.findAll();
-        return infoPersonal;
+    public List<InfoPersonal> list(){
+        return iInfoPersonalRepository.findAll();
     }
-
-    @Override
-    public void saveInfoPersonal(InfoPersonal infoPersonal) {
+    
+    public Optional<InfoPersonal> getOne(Long id){
+        return iInfoPersonalRepository.findById(id);
+    }
+    
+    public Optional<InfoPersonal> getByNombreInfo(String nombreInfo){
+        return iInfoPersonalRepository.findByNombreInfo(nombreInfo);
+    }
+    
+    public void save(InfoPersonal infoPersonal){
         iInfoPersonalRepository.save(infoPersonal);
     }
-
-    @Override
-    public void deleteInfoPersonal(Long id) {
+    
+    public void delete(Long id){
         iInfoPersonalRepository.deleteById(id);
     }
-
-    @Override
-    public InfoPersonal findInfoPersonal(Long id) {
-        InfoPersonal infoPersonal = iInfoPersonalRepository.findById(id).orElse(null);
-        return infoPersonal;
+    
+    public boolean existsById(Long id){
+        return iInfoPersonalRepository.existsById(id);
+    }
+    
+    public boolean existsByNombreInfo(String nombreInfo){
+        return iInfoPersonalRepository.existsByNombreInfo(nombreInfo);
     }
     
 }
