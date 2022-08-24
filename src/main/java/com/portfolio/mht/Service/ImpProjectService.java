@@ -2,37 +2,45 @@
 package com.portfolio.mht.Service;
 
 import com.portfolio.mht.Entity.Project;
-import com.portfolio.mht.Interface.IProjectService;
+
 import com.portfolio.mht.Repository.IProjectRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpProjectService implements IProjectService{
+@Transactional
+public class ImpProjectService{
     
     @Autowired  IProjectRepository iProjectRepository;
 
-    @Override
-    public List<Project> getProject() {
-        List<Project> project = iProjectRepository.findAll();
-        return project;
-    }   
-
-    @Override
-    public void saveProject(Project project) {
+   public List<Project> list(){
+        return iProjectRepository.findAll();
+    }
+    
+    public Optional<Project> getOne(Long id){
+        return iProjectRepository.findById(id);
+    }
+    
+    public Optional<Project> getByTituloPro(String tituloPro){
+        return iProjectRepository.findByTituloPro(tituloPro);
+    }
+    
+    public void save(Project project){
         iProjectRepository.save(project);
     }
-
-    @Override
-    public void deleteProject(Long id) {
+    
+    public void delete(Long id){
         iProjectRepository.deleteById(id);
     }
-
-    @Override
-    public Project findProject(Long id) {
-        Project project = iProjectRepository.findById(id).orElse(null);
-        return project;
+    
+    public boolean existsById(Long id){
+        return iProjectRepository.existsById(id);
+    }
+    
+    public boolean existsByTituloPro(String tituloPro){
+        return iProjectRepository.existsByTituloPro(tituloPro);
     }
 }

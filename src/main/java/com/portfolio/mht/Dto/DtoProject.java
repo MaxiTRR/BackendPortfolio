@@ -1,46 +1,32 @@
 
-package com.portfolio.mht.Entity;
+package com.portfolio.mht.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
 
-
-@Entity
-public class Project {
+public class DtoProject {
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    
-    @NotNull
-    @Size(min=1, max=50, message="No cumple con la longitud")
+    @NotBlank
     private String tituloPro;
     
-    @NotNull
-    @Size(min=1, max=50, message="No cumple con la longitud")
+    @NotBlank
     private String tipoPro;
     
-    @NotNull
-    @Size(min=1, max=50, message="No cumple con la longitud")
+    @NotBlank
     private String periodoPro;
     
-    @NotNull
-    @Size(min=1, max=150, message="No cumple con la longitud")
+    @NotBlank
     private String descripcionPro;
     
+    @NotBlank
     private String imgProject;
     
-    //Constructor
+    //Cosntructor
 
-    public Project() {
+    public DtoProject() {
     }
 
-    public Project(String tituloPro, String tipoPro, String periodoPro, String descripcionPro, String imgProject) {
+    public DtoProject(String tituloPro, String tipoPro, String periodoPro, String descripcionPro, String imgProject) {
         this.tituloPro = tituloPro;
         this.tipoPro = tipoPro;
         this.periodoPro = periodoPro;
@@ -49,14 +35,6 @@ public class Project {
     }
     
     //Getter y Setter
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTituloPro() {
         return tituloPro;
@@ -98,5 +76,5 @@ public class Project {
         this.imgProject = imgProject;
     }
     
-              
+    
 }
